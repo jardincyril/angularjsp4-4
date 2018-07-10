@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr" ng-app="app" ng-controller="control">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+  <title>Exercice 4</title>
+</head>
+<body>
+  <h1>Voitures</h1>
+  <ul ng-repeat="show in voiture">
+    <li ng-if="show.couleur != 'verte'">
+      {{show.marque + ' ' + show.couleur}}
+    </li>
+  </ul>
+<script>
+var app = angular.module("app", []);
+app.controller("control", function($scope, $http) {
+$http.get('voiture.json')
+.then(function(res){
+  $scope.voiture = res.data;
+});
+});
+</script>
+</body>
+</html>
